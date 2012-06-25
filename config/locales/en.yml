@@ -1,0 +1,9 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  signed_out: "You have been signed out"
+  empty_search: "Please enter a seach term"
+  unfollowed: "<strong>Unfollowed</strong> %{user_names}"
+  following: "<strong>Following</strong> %{user_names}"
+  rate_limit_exceeded: "<strong>You have exceeded your rate limit!</strong> See below for details."

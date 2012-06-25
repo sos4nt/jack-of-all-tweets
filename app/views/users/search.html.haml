@@ -1,0 +1,36 @@
+- if @users.blank?
+  %h2.search-title
+    No results for
+    %strong= @query
+- else
+  %h2.search-title
+    Results for
+    %strong= @query
+
+  = form_tag change_friendships_path do
+    .accounts
+      - @users.each do |user|
+        .account{class: user.following ? 'following' : 'not-following'}
+          .action
+            - if user.following
+              = check_box_tag "unfollow_ids[#{user.id}]"
+            - else
+              = check_box_tag "follow_ids[#{user.id}]"
+          .content
+            .header
+              = image_tag image_url_with_size(user.profile_image_url), class: 'avatar'
+              %strong.name= user.name
+              - if user.verified
+                %i.icon-verified
+              %span.screen_name= user.screen_name.prepend("@")
+            %p.description= auto_link(user.description, link: :urls, html: { target: '_blank' })
+    .form-actions
+      = submit_tag "Update selected friendships", disable_with: "Please wait...", class: 'btn btn-primary btn-large'
+
+  -# super simple navigation since we don't know the number of pages
+  %ul.pager
+    %li{class: previous_page ? nil : 'disabled'}
+      = link_to "Previous", params.merge(page: previous_page)
+    %li{class: @users.count > 0 ? nil : 'disabled'}
+      = link_to "Next", params.merge(page: next_page)
+

@@ -1,0 +1,14 @@
+.account{class: user.following ? 'following' : 'not-following'}
+  .action
+    - if user.following
+      = check_box_tag "unfollow_ids[#{user.id}]"
+    - else
+      = check_box_tag "follow_ids[#{user.id}]"
+  .content
+    .header
+      = image_tag image_url_with_size(user.profile_image_url, :normal), size: "48x48", alt: user.screen_name, class: 'avatar'
+      %strong.name= user.name
+      - if user.verified
+        %i.icon-verified
+      %span.screen_name= user.screen_name.prepend("@")
+    %p.description= auto_link(user.description, link: :urls, html: { target: '_blank' })

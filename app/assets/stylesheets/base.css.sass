@@ -1,0 +1,88 @@
+@import "bootstrap"
+@import "bootstrap-responsive"
+@import "icons/*.png"
+
+body
+  padding-top: 60px
+
+.navbar
+  img
+    margin: -5px 5px -5px 0
+    +border-radius(4px)
+
+.help
+  float: right
+
+.request_info
+  color: #777
+
+.search-title
+  font-weight: normal
+
+.icon-verified
+  width: 15px
+  height: 15px
+  @include icons-sprite(verified)
+
+.navbar
+  .brand
+    color: white
+    font-weight: 100
+
+.form-actions
+  text-align: center
+  margin-top: 0
+
+.pagination
+  text-align: center
+
+.account
+  +clearfix
+  position: relative
+  border-top: 1px solid #E8E8E8
+  min-height: 51px
+  padding: 9px 12px
+
+  .check-mark
+    width: 28px
+    height: 28px
+
+  &.not-following
+    .check-mark
+      @include icons-sprite(larry)
+  &.following
+    .check-mark
+      @include icons-sprite(check)
+
+  &.selected
+    background-color: #E9F0F9
+    &.not-following
+      .check-mark
+        @include icons-sprite(check)
+    &.following
+      .check-mark
+        @include icons-sprite(cross)
+
+  .action
+    float: right
+
+  .content
+    margin: 0 40px 0 58px
+
+    .screen_name
+      color: #999
+      font-size: $baseFontSize - 1
+
+    .name
+      font-size: $baseFontSize + 1
+
+    .description
+      font-style: italic
+      font-family: $serifFontFamily
+      color: #777
+
+    .avatar
+      +border-radius(5px)
+      position: absolute
+      top: 10px
+      left: 10px

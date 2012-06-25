@@ -1,0 +1,31 @@
+- if request_info
+  %section.request_info
+    - if request_info.runtime && request_info.runtime != 0
+      %p
+        Request took
+        = number_with_precision request_info.runtime, precision: 2
+        seconds
+    - if request_info.rate_limit_limit && request_info.rate_limit_limit != 0
+      %p
+        %strong
+          = number_to_percentage 100 - 100.0 * request_info.rate_limit_remaining / request_info.rate_limit_limit, precision: 0
+          global hourly rate limit used
+        %br
+        = request_info.rate_limit_limit - request_info.rate_limit_remaining
+        of
+        = request_info.rate_limit_limit
+        requests, reset in
+        = time_ago_in_words(request_info.rate_limit_reset)
+    - if request_info.feature_rate_limit_limit && request_info.feature_rate_limit_limit != 0
+      %p
+        %strong
+          = number_to_percentage 100 - 100 * request_info.feature_rate_limit_remaining / request_info.feature_rate_limit_limit, precision: 0
+          %em
+            = request_info.feature_rate_limit_class
+          hourly rate limit used
+        %br
+        = request_info.feature_rate_limit_limit - request_info.feature_rate_limit_remaining
+        of
+        = request_info.feature_rate_limit_limit
+        requests, reset in
+        = time_ago_in_words(request_info.feature_rate_limit_reset)

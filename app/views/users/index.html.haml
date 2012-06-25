@@ -1,0 +1,13 @@
+- if @users.blank?
+  %h2 Following no one
+- else
+  %h2 Following
+
+  = form_tag change_friendships_path do
+    .accounts
+      = render partial: 'user', collection: @users
+    .form-actions
+      = submit_tag "Update selected friendships", disable_with: "Please wait...", class: 'btn btn-primary btn-large'
+
+  - pagination
+

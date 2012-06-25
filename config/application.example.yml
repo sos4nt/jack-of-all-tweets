@@ -1,0 +1,18 @@
+# config/application.yml
+defaults: &defaults
+  secret_token: REPLACE_WITH_YOUR_SECRET_TOKEN
+  followers_per_page: 20 # limited to 20
+  search_results_per_page: 20 # limited to 100
+  oauth:
+    site: "http://twitter.com"
+    consumer_key: REPLACE_WITH_YOUR_TWITTER_CONSUMER_KEY
+    consumer_secret: REPLACE_WITH_YOUR_TWITTER_CONSUMER_SECRET
+
+test:
+  <<: *defaults
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
