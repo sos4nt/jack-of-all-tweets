@@ -10,5 +10,5 @@
       %strong.name= user.name
       - if user.verified
         %i.icon-verified
-      %span.screen_name= user.screen_name.prepend("@")
+      %span.screen_name= "@#{user.screen_name}"
     %p.description= auto_link(user.description, link: :urls, html: { target: '_blank' })

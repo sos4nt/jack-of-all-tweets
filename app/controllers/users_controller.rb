@@ -31,11 +31,11 @@ class UsersController < ApplicationController
     unfollow_ids = params[:unfollow_ids] || {}
 
     following = follow_ids.map { |user_id, _|
-      twitter_api.friendships_create(user_id.to_i).screen_name.prepend("@")
+      "@#{twitter_api.friendships_create(user_id.to_i).screen_name}"
     }
 
     unfollowed = unfollow_ids.map { |user_id, _|
-      twitter_api.friendships_destroy(user_id.to_i).screen_name.prepend("@")
+      "@#{twitter_api.friendships_destroy(user_id.to_i).screen_name}"
     }
 
     # TODO move markup to somewhere else
