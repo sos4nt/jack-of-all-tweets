@@ -1,4 +1,8 @@
 class Settings < Settingslogic
-  source "#{Rails.root}/config/application.yml"
+  if File.exists? Rails.root.join "config", "application.yml"
+    source Rails.root.join "config", "application.yml"
+  else
+    source Rails.root.join "config", "application.example.yml"
+  end
   namespace Rails.env
 end
